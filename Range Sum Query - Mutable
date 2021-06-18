@@ -1,0 +1,36 @@
+class NumArray {
+   int nums[];
+    int sum=0;
+
+	//Intitalised the array and calculated the sum here only
+    public NumArray(int[] nums) {
+        this.nums=nums;
+        for(int i=0; i<nums.length; i++)
+            sum+=nums[i];
+    }
+    
+	//Subtract the previous value from sum, replace it with new value and now add that value to the sum
+    public void update(int index, int val) {
+        sum-=nums[index];
+        nums[index]=val;
+        sum+=nums[index];
+    }
+    
+	//Calculate the sum from 0 till left(exclusive) and right+1 to nums.length(exclusive)
+    public int sumRange(int left, int right) {
+        int tempLeft=0;
+        int tempRight=0;
+        for(int i=0; i<left; i++)
+            tempLeft+=nums[i];
+        for(int i=right+1; i<nums.length; i++)
+            tempRight+=nums[i];
+        return sum-(tempLeft+tempRight);
+    }
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * obj.update(index,val);
+ * int param_2 = obj.sumRange(left,right);
+ */
